@@ -1,65 +1,168 @@
 # iMovies — Movie Ticket Booking Made Simple
 
-iMovies is a full-stack movie ticket booking web application built with React and Vite on the frontend, Node.js and Express on the backend, and MongoDB with Mongoose for data storage. It demonstrates the main flow of browsing movies, viewing showtimes, selecting seats, making a demo booking, and viewing ticket details.
+**A Full-Stack Web Application for Online Movie Ticket Booking**
 
-> **Project status:** Academic/demo application. The checkout is simulated and is not connected to a real payment provider.
+iMovies is a full-stack web application developed to simplify the movie ticket booking process. Users can explore movies, view available shows, select seats, complete a simulated checkout, and access digital tickets. The application also provides administrative functionality for managing movie-related data and viewing booking information.
 
-## Features
+The project demonstrates the integration of a React frontend, an Express and Node.js backend, and a MongoDB database to implement a movie booking workflow.
 
-### Customer features
-- Register, log in, and authenticate using a JWT-based flow.
-- Browse movies and view poster, description, genre, language, duration, release date, and rating.
-- Find shows with theatre, date, time, and ticket price.
-- Select seats and submit a booking through the demo checkout.
-- View booking history and ticket details.
-- View a QR code for a ticket and open the ticket-verification endpoint.
-- Cancel an eligible booking through the application's demo cancellation flow.
+> **Project status:** Academic demonstration project. Checkout and refund-related behavior is simulated; no real payment provider is integrated.
 
-### Admin features
-- Access admin functionality through role-based authorization.
-- Manage movie and show data.
-- View booking information through the admin dashboard.
+---
 
-The exact options visible in the UI depend on the current application code and the signed-in user's role.
+## 1. Project Overview
 
-## Screenshots
+### Problem Statement
 
-### Home Page
+Moviegoers need a convenient way to discover movies, check showtimes, choose seats, and keep track of their bookings. A centralized web application can bring these activities together in one interface.
+
+### Project Objective
+
+The primary objective of iMovies is to develop a user-friendly movie ticket booking platform that integrates movie discovery, show management, seat selection, booking records, and digital ticket access.
+
+### Scope of the Project
+
+The application covers:
+
+- Movie discovery and browsing.
+- Show and theatre information.
+- Seat selection and booking management.
+- User authentication and role-based access.
+- Digital tickets with QR codes.
+- Administrative movie and show management.
+
+## 2. Key Features
+
+### Customer Module
+
+- **User Authentication:** Registration and login using a JWT-based authentication flow.
+- **Movie Discovery:** Browse movie posters, descriptions, genres, ratings, languages, and other movie details.
+- **Show Information:** View show listings, theatre names, dates, times, and ticket prices.
+- **Seat Selection:** Select seats from the available seating layout.
+- **Booking Management:** Create bookings and view booking history.
+- **Digital Tickets:** Access ticket details, QR codes, and ticket verification.
+- **Cancellation:** Cancel eligible bookings through the application's demonstration workflow.
+
+### Administrator Module
+
+- **Role-Based Access:** Restrict administrative functionality to authorized admin accounts.
+- **Movie Management:** Manage movie information.
+- **Show Management:** Manage show schedules and related information.
+- **Booking Overview:** Review booking information through the admin dashboard.
+
+---
+
+## 3. Application Screenshots
+
+Ensure the image paths and filenames below match the files in your `screenshots/` folder.
+
+### 3.1 Home Page
+
 ![iMovies Home Page](screenshots/Homepage.png)
 
-### Explore Movies
+The landing page introduces the application and provides access to the movie browsing experience.
+
+### 3.2 Explore Movies
+
 ![Explore Movies](screenshots/ExploreMovies.png)
 
-### Seat Selection
+The movie browsing interface presents available movies and supports discovery through the application's browsing and filtering features.
+
+### 3.3 Seat Selection
+
 ![Seat Selection](screenshots/SeatSelection.png)
 
-### Digital Ticket
+The seat selection interface allows users to choose available seats before proceeding with their booking.
+
+### 3.4 Digital Ticket
+
 ![Digital Ticket](screenshots/DigitalTicket.png)
 
-### Admin Dashboard
+The digital ticket interface displays booking information and provides QR-based ticket access.
+
+### 3.5 Administrator Dashboard
+
 ![Admin Dashboard](screenshots/Admin%20Dashboard.png)
 
+The administrator dashboard provides an overview of booking-related information and access to administrative operations.
 
+---
 
-## Technology stack
+## 4. Technology Stack
 
-| Area | Technology |
+| Component | Technologies |
 |---|---|
 | Frontend | React, Vite, JavaScript, CSS |
-| Backend | Node.js, Express |
+| Backend | Node.js, Express.js |
 | Database | MongoDB Atlas, Mongoose |
-| Authentication | JSON Web Tokens (JWT), password hashing in the authentication flow |
-| API | REST endpoints |
-| Ticket features | QR code generation and ticket-verification endpoint |
+| Authentication | JSON Web Tokens (JWT), password hashing |
+| Communication | REST API |
+| Ticketing | QR code generation and ticket verification |
+| Development Tools | Visual Studio Code, Git, GitHub |
 
-## Project structure
+---
+
+## 5. System Architecture
+
+The application follows a client-server architecture.
+
+1. **Presentation Layer:** The React frontend provides the user interface for browsing movies, selecting seats, and managing bookings.
+2. **Application Layer:** The Express backend processes API requests, applies authentication and authorization checks, and executes booking-related operations.
+3. **Data Layer:** MongoDB stores application data, including users, movies, shows, and bookings.
+4. **Ticketing Layer:** Ticket-related functionality provides QR codes and ticket verification.
+
+```text
+         User / Administrator
+                  |
+                  v
+        React + Vite Frontend
+                  |
+                  v
+        Express REST API
+                  |
+          +-------+-------+
+          |               |
+          v               v
+   Authentication    Business Logic
+          |               |
+          +-------+-------+
+                  |
+                  v
+                MongoDB
+                  |
+                  v
+       Booking and Ticket Data
+```
+
+See [System Architecture](docs/architecture.md) for the architecture diagram.
+
+---
+
+## 6. Database Design
+
+The application uses MongoDB with Mongoose models to organize its principal entities.
+
+| Entity | Purpose |
+|---|---|
+| User | Stores user details and access roles. |
+| Movie | Stores movie descriptions, genres, ratings, and poster information. |
+| Show | Stores movie references, theatre details, schedules, prices, and seat information. |
+| Booking | Stores booking identifiers, user references, selected seats, amounts, and booking status. |
+
+The data model connects movies to their shows and shows to their bookings.
+
+Refer to the [Entity Relationship Diagram](docs/er-diagram.md) for the data model overview.
+
+---
+
+## 7. Project Structure
 
 ```text
 IMovies/
-├── client/                 # React + Vite frontend
+├── client/                  # React + Vite frontend
 │   ├── public/
 │   └── src/
-├── server/                 # Express backend
+├── server/                  # Node.js + Express backend
 │   ├── models/
 │   ├── routes/
 │   ├── middleware/
@@ -68,143 +171,153 @@ IMovies/
 │   ├── architecture.md
 │   ├── er-diagram.md
 │   └── user-flow.md
+├── screenshots/
 ├── .gitignore
 └── README.md
 ```
 
-Your actual project may contain additional files or use slightly different subfolder names. Keep the existing working structure rather than moving files solely to match this illustration.
+This structure summarizes the principal project directories; additional files may be present.
 
-## Prerequisites
+---
 
-- Node.js and npm installed.
+## 8. Installation and Setup
+
+### Prerequisites
+
+- Node.js and npm.
 - A MongoDB database, such as a MongoDB Atlas cluster.
-- Git (for version control).
-- A modern browser.
+- Git.
+- A modern web browser.
 
-## Setup
-
-### 1. Clone the repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/imovies.git
 cd imovies
 ```
 
-Replace `YOUR_USERNAME` with the GitHub account that owns the repository.
+Replace `YOUR_USERNAME` with the GitHub repository owner's username.
 
-### 2. Configure the backend
+### Step 2: Configure and Start the Backend
 
 ```bash
 cd server
 npm install
 ```
 
-Create a `.env` file inside `server/` with the environment variables used by your backend:
+Create a `.env` file inside the `server` directory using the environment variable names expected by the backend:
 
 ```dotenv
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=replace_with_a_long_random_secret
+JWT_SECRET=your_long_random_secret
 CLIENT_URL=http://localhost:5173
 SERVER_PUBLIC_URL=http://localhost:5000
 ```
 
-Use the variable names your code actually reads. `CLIENT_URL` and `SERVER_PUBLIC_URL` may be optional depending on the route configuration. Never commit real values or share your actual MongoDB URI or JWT secret.
+Use the applicable variables from your implementation. `CLIENT_URL` and `SERVER_PUBLIC_URL` may be optional depending on the configuration.
 
-Start the backend using the script defined in `server/package.json`. For example:
+Start the backend using the development script defined in `server/package.json`, for example:
 
 ```bash
 npm run dev
 ```
 
-If no development script exists, use the start command configured by your project; a simple project may use `node server.js`.
-
-### 3. Configure the frontend
+### Step 3: Configure and Start the Frontend
 
 Open a second terminal:
 
 ```bash
 cd client
 npm install
-```
-
-Start the Vite development server using the script in `client/package.json`:
-
-```bash
 npm run dev
 ```
 
-Open the local URL printed by Vite, commonly `http://localhost:5173`.
+Open the local URL printed by Vite, typically `http://localhost:5173`.
 
-If the frontend uses an API base URL environment variable, configure it according to the variable name read in `client/src/api.js`. Do not assume a variable name without checking that file.
+Configure the frontend API base URL according to the environment variables or settings used in `client/src/api.js`.
 
-## API route groups
+> **Security:** Never commit your actual `.env` file, MongoDB connection string, or JWT secret to GitHub.
 
-The backend has been organized around these route prefixes:
+---
 
-| Prefix | Purpose |
+## 9. API Organization
+
+The backend organizes its REST endpoints into the following route groups.
+
+| Route Prefix | Responsibility |
 |---|---|
-| `/api/auth` | Registration and authentication |
-| `/api/movies` | Movie data |
-| `/api/shows` | Show data |
-| `/api/bookings` | Booking, checkout, and cancellation flows |
-| `/api/admin` | Admin operations |
-| `/api/tickets` | Ticket QR and verification routes, if mounted in `server.js` |
+| `/api/auth` | User registration and authentication |
+| `/api/movies` | Movie-related operations |
+| `/api/shows` | Show-related operations |
+| `/api/bookings` | Booking, checkout, and cancellation |
+| `/api/admin` | Administrative operations |
+| `/api/tickets` | Ticket QR and verification operations, if mounted |
 
-The exact methods and request/response schemas should be checked in the route files.
+Refer to the corresponding route files for the implemented HTTP methods and request formats.
 
-## Environment variables
+---
 
-| Variable | Purpose | Secret? |
-|---|---|---|
-| `PORT` | Port used by the Express server | No |
-| `MONGO_URI` | MongoDB connection string | **Yes** |
-| `JWT_SECRET` | Secret used to sign/verify JWTs | **Yes** |
-| `CLIENT_URL` | Frontend origin, for example when configuring CORS | Usually no |
-| `SERVER_PUBLIC_URL` | Base URL used when constructing public ticket-verification URLs | Usually no |
+## 10. Testing and Validation
 
-Only document variable names and example placeholders in this README. Keep actual values in a local `.env` file and ensure `.env` is ignored by Git. If the project uses additional frontend environment variables, document their names after checking the client code.
-
-## Data model overview
-
-- **User:** name, email, password hash, role (`user` or `admin`).
-- **Movie:** title, description, genres, duration, language, release date, poster URL, rating.
-- **Show:** movie reference, theatre name, date, time, ticket price, total seats, booked seats.
-- **Booking:** booking identifier, user email, show reference, selected seats, total amount, booking status, and relevant ticket/payment fields.
-
-See [`docs/er-diagram.md`](docs/er-diagram.md) for the relationship diagram. Field names may evolve as the schema changes.
-
-## Documentation
-
-- [System architecture](docs/architecture.md)
-- [Entity relationship diagram](docs/er-diagram.md)
-- [User and admin flow](docs/user-flow.md)
-
-The diagrams use Mermaid syntax. GitHub can render Mermaid diagrams directly in Markdown.
-
-## Testing checklist
+Use this checklist to evaluate the application's principal workflows. Mark items complete only after testing the corresponding functionality.
 
 - [ ] Backend starts and connects to MongoDB.
-- [ ] Frontend starts and loads movie data.
-- [ ] Registration, login, and logout work.
-- [ ] Movie details and showtimes are displayed correctly.
-- [ ] Seat selection prevents selection of unavailable seats.
-- [ ] Demo checkout creates a booking.
-- [ ] Booking history and ticket details load.
-- [ ] QR/ticket verification works as intended.
-- [ ] Cancellation updates the booking and seat availability as intended.
-- [ ] Admin-only routes reject non-admin users.
-- [ ] `.env` and other secrets are not tracked by Git.
+- [ ] Movie data loads correctly in the frontend.
+- [ ] Registration and login function correctly.
+- [ ] Movie browsing and show information work as expected.
+- [ ] Unavailable seats cannot be selected.
+- [ ] Simulated checkout creates a booking.
+- [ ] Booking history and digital ticket details are accessible.
+- [ ] Ticket QR and verification functionality work as intended.
+- [ ] Cancellation updates booking status and seat availability as intended.
+- [ ] Admin-only operations enforce role-based authorization.
+- [ ] Environment secrets are excluded from version control.
 
-## Known limitations and security notes
+---
 
-- **Payments are simulated.** The application does not establish that money was actually collected. Do not present the demo checkout as a real payment integration.
-- **Refunds are simulated.** A booking status update is not the same as issuing a refund through a payment provider.
-- **Concurrency needs production hardening.** Seat reservation and cancellation should use atomic database operations or transactions to prevent two users from booking the same seat simultaneously.
-- **Ticket verification is a demo feature.** A production implementation should use unguessable ticket tokens, rate limiting, appropriate privacy controls, and clear rules for cancelled tickets.
-- **Production deployment requires additional hardening.** Use HTTPS, secure cookie/token handling, input validation, rate limiting, logging, and server-side authorization checks.
-- Movie posters and sample show data depend on external URLs and seeded database records.
+## 11. Limitations and Future Enhancements
+
+### Current Limitations
+
+- **Simulated payments:** Checkout does not process real financial transactions.
+- **Simulated refunds:** Updating booking status does not issue an actual refund.
+- **Concurrent seat reservations:** Production deployment requires stronger atomic reservation and cancellation handling.
+- **Production security:** Additional hardening, including rate limiting, secure deployment configuration, and comprehensive validation, is necessary.
+
+### Future Enhancements
+
+- Integration with a real payment gateway and verified payment webhooks.
+- Atomic seat reservation to prevent double booking.
+- Automated email confirmations and booking notifications.
+- Enhanced booking analytics and reporting.
+- Production deployment with HTTPS and improved security controls.
+
+---
+
+## 12. Project Documentation
+
+Additional project documentation is available in the `docs/` directory.
+
+- [System Architecture](docs/architecture.md)
+- [Entity Relationship Diagram](docs/er-diagram.md)
+- [User and Administrator Flow](docs/user-flow.md)
+
+These documents explain the system structure, data relationships, and principal application workflows.
+
+---
+
+## 13. Conclusion
+
+iMovies demonstrates the development of a full-stack movie ticket booking application using the MERN technology ecosystem. It brings together authentication, movie discovery, show management, seat selection, booking records, and digital ticket functionality in a single web application.
+
+The project provides practical experience in frontend development, REST API design, database integration, authentication, role-based authorization, and software documentation.
+
+**Project Type:** Academic / Educational  
+**Repository:** `https://github.com/YOUR_USERNAME/imovies`
+
+---
 
 ## License
 
-Add a license if you intend to distribute or reuse this project publicly. Until one is added, no open-source license is implied.
+No open-source license is specified unless a license file is added to the repository.
