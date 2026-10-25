@@ -22,6 +22,23 @@ iMovies is a full-stack movie ticket booking web application built with React an
 
 The exact options visible in the UI depend on the current application code and the signed-in user's role.
 
+## Screenshots
+
+### Home Page
+![iMovies Home Page](screenshots/Homepage.png)
+
+### Explore Movies
+![Explore Movies](screenshots/ExploreMovies.png)
+
+### Seat Selection
+![Seat Selection](screenshots/SeatSelection.png)
+
+### Digital Ticket
+![Digital Ticket](screenshots/DigitalTicket.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/Admin%20Dashboard.png)
+
 ## Technology stack
 
 | Area | Technology |
