@@ -39,6 +39,8 @@ The exact options visible in the UI depend on the current application code and t
 ### Admin Dashboard
 ![Admin Dashboard](screenshots/Admin%20Dashboard.png)
 
+
+
 ## Technology stack
 
 | Area | Technology |
